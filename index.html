@@ -22,12 +22,12 @@
 
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" href="/assets/fonts/luckiest-guy.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/evil-empire.woff2" as="font" type="font/woff2" crossorigin>
 
   <style>
     @font-face {
-      font-family: "Luckiest Guy";
-      src: url("/assets/fonts/luckiest-guy.woff2") format("woff2");
+      font-family: "Evil Empire";
+      src: url("/assets/fonts/evil-empire.woff2") format("woff2");
       font-weight: 400;
       font-display: swap;
     }
@@ -115,7 +115,7 @@
     }
     .soon {
       margin: 6px 0 0;
-      font-family: "Luckiest Guy", system-ui, sans-serif;
+      font-family: "Evil Empire", system-ui, sans-serif;
       font-size: clamp(44px, 8.5vw, 92px);
       line-height: 1.05;
       letter-spacing: .02em;
@@ -199,7 +199,7 @@
     .langs { margin: 40px auto 0; max-width: 44em; }
     .langs h2 {
       margin: 0;
-      font-family: "Luckiest Guy", system-ui, sans-serif;
+      font-family: "Evil Empire", system-ui, sans-serif;
       font-weight: 400; font-size: 26px; letter-spacing: .03em;
       color: var(--gold-2);
     }
@@ -225,6 +225,7 @@
     }
     footer a { color: var(--text); text-decoration-color: var(--gold-line); text-underline-offset: 3px; }
     footer a:hover { color: var(--gold-1); }
+    footer .credit { display: inline-block; margin-top: 6px; font-size: 12px; }
 
     @media (max-width: 600px) {
       .art { height: 56vh; height: 56svh; }
@@ -295,6 +296,7 @@
     © 2026 Lleans Games Studio ·
     <span data-i18n="contact">Contacto</span>:
     <a href="mailto:frank.frantic@pangeachronicles.com">frank.frantic@pangeachronicles.com</a>
+    <br><span class="credit"><span data-i18n="fontCredit">Tipografía</span> Evil Empire, de Tup Wanders (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)</span>
   </footer>
 
   <script>
@@ -308,6 +310,7 @@
         cta: "Añádelo a tu lista de deseados en Steam",
         more: "Muy pronto, más novedades por aquí.",
         contact: "Contacto",
+        fontCredit: "Tipografía",
         play: "Ver el tráiler",
         langsTitle: "Idiomas",
         voicesLabel: "Voces:",
@@ -324,6 +327,7 @@
         cta: "Wishlist it on Steam",
         more: "More news coming here soon.",
         contact: "Contact",
+        fontCredit: "Typeface",
         play: "Watch the trailer",
         langsTitle: "Languages",
         voicesLabel: "Voice acting:",
