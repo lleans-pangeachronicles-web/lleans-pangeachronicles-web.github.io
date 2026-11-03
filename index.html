@@ -133,6 +133,41 @@
       font-size: clamp(16px, 2.1vw, 19px);
     }
 
+
+    /* ---------- Tráiler (fachada: YouTube solo carga al pulsar) ---------- */
+    .trailer {
+      position: relative;
+      width: min(860px, 100%);
+      aspect-ratio: 16 / 9;
+      margin: 30px auto 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 0 0 1px var(--gold-line), 0 18px 40px rgba(0, 0, 0, .6);
+    }
+    .trailer button {
+      all: unset; cursor: pointer;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trailer button img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(.75);
+      transition: filter .15s ease;
+    }
+    .trailer button:hover img { filter: brightness(.9); }
+    .trailer .play {
+      position: relative;
+      width: 84px; height: 84px; border-radius: 50%;
+      background: linear-gradient(180deg, var(--gold-1), var(--gold-2) 55%, #e2a81a);
+      box-shadow: 0 0 0 1px #6b4500 inset, 0 6px 0 #6b4500, 0 12px 30px rgba(0, 0, 0, .6);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trailer .play svg { width: 34px; height: 34px; margin-left: 5px; color: #1a1205; }
+    .trailer button:focus-visible .play { outline: 3px solid var(--gold-1); outline-offset: 6px; }
+    .trailer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
     /* ---------- Botón de Steam ---------- */
     .steam {
       margin-top: 30px;
@@ -158,6 +193,28 @@
       margin: 26px 0 0;
       font-size: 14px; color: var(--muted);
     }
+
+
+    /* ---------- Idiomas ---------- */
+    .langs { margin: 40px auto 0; max-width: 44em; }
+    .langs h2 {
+      margin: 0;
+      font-family: "Luckiest Guy", system-ui, sans-serif;
+      font-weight: 400; font-size: 26px; letter-spacing: .03em;
+      color: var(--gold-2);
+    }
+    .langs .voices { margin: 10px 0 0; font-size: 16px; }
+    .langs .voices strong { color: var(--gold-1); }
+    .langs ul {
+      list-style: none; margin: 14px 0 0; padding: 0;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    }
+    .langs li {
+      padding: 6px 12px; border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      font-size: 14px; color: var(--text);
+    }
+    .langs .note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
 
     /* ---------- Pie ---------- */
     footer {
@@ -204,6 +261,16 @@
     <p class="soon" data-i18n="soon">Próximamente</p>
     <p class="tagline" data-i18n="tagline">Un encargo fácil. Un continente perdido. Humor ácido, inventario y puzles de los de antes.</p>
 
+
+    <div class="trailer" id="trailer">
+      <button type="button" id="trailer-play" aria-label="Ver el tráiler">
+        <img src="/assets/og-image.jpg" alt="" width="1200" height="630" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l15 8-15 8z"/></svg>
+        </span>
+      </button>
+    </div>
+
     <a class="steam"
        href="https://store.steampowered.com/app/4394080/?utm_source=web&amp;utm_medium=referral&amp;utm_campaign=proximamente"
        target="_blank" rel="noopener">
@@ -213,6 +280,13 @@
       </svg>
       <span data-i18n="cta">Añádelo a tu lista de deseados en Steam</span>
     </a>
+
+    <section class="langs" aria-labelledby="langs-title">
+      <h2 id="langs-title" data-i18n="langsTitle">Idiomas</h2>
+      <p class="voices"><span data-i18n="voicesLabel">Voces:</span> <strong data-i18n="voices">castellano e inglés</strong></p>
+      <ul id="langs-list"></ul>
+      <p class="note" data-i18n="langsNote">Textos y subtítulos en los 13 idiomas.</p>
+    </section>
 
     <p class="more" data-i18n="more">Muy pronto, más novedades por aquí.</p>
   </main>
@@ -233,7 +307,14 @@
         tagline: "Un encargo fácil. Un continente perdido. Humor ácido, inventario y puzles de los de antes.",
         cta: "Añádelo a tu lista de deseados en Steam",
         more: "Muy pronto, más novedades por aquí.",
-        contact: "Contacto"
+        contact: "Contacto",
+        play: "Ver el tráiler",
+        langsTitle: "Idiomas",
+        voicesLabel: "Voces:",
+        voices: "castellano e inglés",
+        langsNote: "Textos y subtítulos en los 13 idiomas.",
+        langs: ["Castellano (España)", "Español (Hispanoamérica)", "Inglés", "Francés", "Italiano", "Alemán", "Neerlandés", "Portugués (Portugal)", "Portugués (Brasil)", "Catalán", "Valenciano", "Euskera", "Gallego"],
+        video: "IfuSGhjb-xE"
       },
       en: {
         title: "PANGEA: Chronicles of the Lost Continent — Coming soon to Steam",
@@ -242,7 +323,14 @@
         tagline: "An easy job. A lost continent. Sharp humor, inventory and puzzles the old-school way.",
         cta: "Wishlist it on Steam",
         more: "More news coming here soon.",
-        contact: "Contact"
+        contact: "Contact",
+        play: "Watch the trailer",
+        langsTitle: "Languages",
+        voicesLabel: "Voice acting:",
+        voices: "English and Spanish",
+        langsNote: "Text and subtitles in all 13 languages.",
+        langs: ["English", "Spanish (Spain)", "Spanish (Latin America)", "French", "Italian", "German", "Dutch", "Portuguese (Portugal)", "Portuguese (Brazil)", "Catalan", "Valencian", "Basque", "Galician"],
+        video: "beO_vMI_DMI"
       }
     };
 
@@ -256,8 +344,27 @@
       document.querySelectorAll("[data-set-lang]").forEach(b => {
         b.setAttribute("aria-pressed", String(b.dataset.setLang === lang));
       });
+      const list = document.getElementById("langs-list");
+      if (list) list.replaceChildren(...t.langs.map(n => {
+        const li = document.createElement("li"); li.textContent = n; return li;
+      }));
+      const play = document.getElementById("trailer-play");
+      if (play) play.setAttribute("aria-label", t.play);
+      currentLang = lang;
       try { localStorage.setItem("pangea-lang", lang); } catch (e) {}
     }
+
+    // Tráiler: hasta que no se pulsa, no se carga nada de YouTube (sin cookies ni aviso).
+    let currentLang = "es";
+    document.getElementById("trailer-play").addEventListener("click", () => {
+      const id = (T[currentLang] || T.es).video;
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1";
+      f.title = "PANGEA: Chronicles of the Lost Continent — Trailer";
+      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      document.getElementById("trailer").replaceChildren(f);
+    });
 
     document.querySelectorAll("[data-set-lang]").forEach(b => {
       b.addEventListener("click", () => setLang(b.dataset.setLang));
