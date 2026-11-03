@@ -350,16 +350,22 @@
       }));
       const play = document.getElementById("trailer-play");
       if (play) play.setAttribute("aria-label", t.play);
+      // Si el tráiler ya se está viendo, cambia al vídeo del idioma nuevo.
+      const frame = document.querySelector("#trailer iframe");
+      if (frame && lang !== currentLang) frame.src = trailerSrc(t.video);
       currentLang = lang;
       try { localStorage.setItem("pangea-lang", lang); } catch (e) {}
     }
 
     // Tráiler: hasta que no se pulsa, no se carga nada de YouTube (sin cookies ni aviso).
     let currentLang = "es";
+    function trailerSrc(id) {
+      return "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1";
+    }
     document.getElementById("trailer-play").addEventListener("click", () => {
       const id = (T[currentLang] || T.es).video;
       const f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1";
+      f.src = trailerSrc(id);
       f.title = "PANGEA: Chronicles of the Lost Continent — Trailer";
       f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       f.allowFullscreen = true;
